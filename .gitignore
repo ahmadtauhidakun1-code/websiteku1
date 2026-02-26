@@ -1,0 +1,20 @@
+# Abaikan file ZIP backup proyek
+*.zip
+*.tar
+*.gz
+*.rar
+
+# Abaikan file Python script generator sementara
+*.py
+__pycache__/
+
+# Log file jika ada
+*.log
+
+# Konfigurasi spesifik OS (Windows/Mac)
+.DS_Store
+Thumbs.db
+
+# Abaikan folder upload/gambar jika di masa depan akan ada banyak data dinamis
+# (Opsional - saat ini tidak diabaikan)
+# uploads/
