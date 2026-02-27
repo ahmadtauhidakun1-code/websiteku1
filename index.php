@@ -158,7 +158,7 @@ if (isset($_SESSION['user_id'])) {
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="m-0">&copy; <?= date("Y") ?> CateringKu by UKK Project. All Rights Reserved.</p>
+            <p class="m-0">&copy; <?= date("Y") ?> CateringKu by Ahmad Tauhid. All Rights Reserved.</p>
         </div>
     </footer>
 
