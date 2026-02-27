@@ -23,7 +23,13 @@ $orders->execute([$_SESSION['user_id']]); $riwayat = $orders->fetchAll();
                     <span class="badge <?= $r['status']=='Selesai'?'bg-success':'bg-warning text-dark' ?> fs-6"><?= ucfirst($r['status']) ?></span>
                 </div>
                 <p class="mb-1 text-muted">Tanggal Acara: <?= $r['tgl_acara'] ?></p>
-                <p class="mb-0 fw-bold">Total Harga: Rp <?= number_format($r['total_harga'],0,',','.') ?></p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <p class="mb-0 fw-bold fs-5 text-danger">Rp <?= number_format($r['total_harga'],0,',','.') ?></p>
+                    <?php if($r['status'] == 'Menunggu Konfirmasi'): ?>
+                        <?php $wa_pelanggan_text = urlencode("Halo Admin CateringKu,\nSaya ingin mengonfirmasi pembayaran pesanan saya:\n\nPaket: *" . $r['nama_paket'] . "*\nTgl Acara: *" . $r['tgl_acara'] . "*\nTotal Harga: *Rp " . number_format($r['total_harga'],0,',','.') . "*\n\nBerikut saya lampirkan bukti transfernya."); ?>
+                        <a href="https://wa.me/6281234567890?text=<?= $wa_pelanggan_text ?>" target="_blank" class="btn btn-sm btn-success"><i class="fab fa-whatsapp"></i> Konfirmasi via WA</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         <?php endforeach; ?>

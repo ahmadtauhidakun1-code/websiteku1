@@ -34,7 +34,14 @@ $details = $stmtDetail->fetchAll();
     <div class="flex-grow-1 p-4">
         <div class="d-flex justify-content-between mb-3 align-items-center">
             <h4>Detail Pesanan #<?= $order['id'] ?></h4>
-            <a href="pesanan.php" class="btn btn-secondary">&larr; Kembali</a>
+            <div>
+                <?php
+                $wa_phone = preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $order['no_telp']));
+                $wa_text = urlencode("Halo Kak *" . $order['nama'] . "*,\n\nIni adalah Invoice tagihan pesanan *CateringKu* (Order #" . $order['id'] . ").\nTotal Tagihan: *Rp " . number_format($order['total_harga'],0,',','.') . "*\nTujuan Transfer:\nBank: *" . $order['nama_bank'] . "*\nNo Rek: *" . $order['no_rekening'] . "*\n\nDimohon untuk segera menyelesaikan pembayaran ya. Terima kasih!");
+                ?>
+                <a href="https://wa.me/<?= $wa_phone ?>?text=<?= $wa_text ?>" target="_blank" class="btn btn-success me-2"><i class="fab fa-whatsapp"></i> Kirim Invoice WA</a>
+                <a href="pesanan.php" class="btn btn-secondary">&larr; Kembali</a>
+            </div>
         </div>
         
         <div class="row">
